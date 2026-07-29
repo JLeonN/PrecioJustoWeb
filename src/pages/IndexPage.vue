@@ -264,8 +264,8 @@ const imagenesTutorial = [
   font-weight: 800;
 }
 .boton-descarga--encabezado {
-  color: var(--texto-sobre-primario);
-  background: var(--color-primario);
+  color: var(--texto-sobre-primario) !important;
+  background-color: var(--color-primario) !important;
 }
 .boton-descarga--principal,
 .boton-descarga--final {
@@ -291,11 +291,16 @@ const imagenesTutorial = [
 .etiqueta-portada,
 .etiqueta-seccion {
   margin: 0 0 var(--espaciado-sm);
-  color: var(--color-secundario);
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+.etiqueta-portada {
+  color: var(--texto-sobre-primario);
+}
+.etiqueta-seccion {
+  color: var(--color-secundario);
 }
 .texto-portada h1,
 .encabezado-seccion h2,
