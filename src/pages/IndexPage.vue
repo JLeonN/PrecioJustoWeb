@@ -124,18 +124,6 @@
           </p>
         </div>
       </section>
-      <section class="seccion-sitio seccion-privacidad" aria-labelledby="titulo-privacidad">
-        <div class="contenedor-sitio contenido-privacidad">
-          <q-icon name="verified_user" size="38px" aria-hidden="true" />
-          <div>
-            <h2 id="titulo-privacidad">Tus datos son tuyos</h2>
-            <p>
-              Tus productos, precios y comercios se registran para tu uso personal y no se comparten
-              con otros usuarios.
-            </p>
-          </div>
-        </div>
-      </section>
       <section class="seccion-gracias" aria-labelledby="titulo-gracias">
         <div class="contenedor-sitio contenido-gracias">
           <q-icon name="favorite" size="34px" aria-hidden="true" />
@@ -279,7 +267,6 @@ const capturasAplicacion = [
 .navegacion-sitio,
 .contenido-pie,
 .funcion-destacada,
-.contenido-privacidad,
 .contenido-gracias {
   display: flex;
   align-items: center;
@@ -374,7 +361,6 @@ const capturasAplicacion = [
 }
 .texto-portada h1,
 .encabezado-seccion h2,
-.contenido-privacidad h2,
 .contenido-gracias h2,
 .contenido-final h2 {
   margin: 0;
@@ -422,8 +408,7 @@ const capturasAplicacion = [
   padding: 92px 0;
   scroll-margin-top: 68px;
 }
-.seccion-tutorial,
-.seccion-privacidad {
+.seccion-tutorial {
   background: var(--fondo-superficie);
 }
 .encabezado-seccion {
@@ -432,7 +417,6 @@ const capturasAplicacion = [
   text-align: center;
 }
 .encabezado-seccion h2,
-.contenido-privacidad h2,
 .contenido-gracias h2,
 .contenido-final h2 {
   color: var(--texto-primario);
@@ -440,7 +424,6 @@ const capturasAplicacion = [
 }
 .encabezado-seccion > p:last-child,
 .funcion-destacada p,
-.contenido-privacidad p,
 .contenido-gracias p,
 .contenido-final p {
   color: var(--texto-secundario);
@@ -477,8 +460,7 @@ const capturasAplicacion = [
   font-weight: 800;
 }
 .icono-paso,
-.funcion-destacada > .q-icon,
-.contenido-privacidad > .q-icon {
+.funcion-destacada > .q-icon {
   color: var(--color-primario);
 }
 .tarjeta-paso h3,
@@ -537,7 +519,6 @@ const capturasAplicacion = [
   line-height: 1.5;
   text-align: center;
 }
-.contenido-privacidad,
 .contenido-gracias {
   max-width: 800px;
   gap: var(--espaciado-lg);
@@ -546,7 +527,6 @@ const capturasAplicacion = [
   border-radius: var(--borde-radio-md);
   background: var(--fondo-pagina);
 }
-.contenido-privacidad p,
 .contenido-gracias p {
   margin: var(--espaciado-sm) 0 0;
 }
@@ -657,7 +637,6 @@ const capturasAplicacion = [
     width: calc((100% - var(--espaciado-md)) / 2);
     justify-self: center;
   }
-  .contenido-privacidad,
   .contenido-gracias {
     align-items: flex-start;
     padding: var(--espaciado-lg);
