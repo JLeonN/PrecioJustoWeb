@@ -3,6 +3,9 @@ body,
 #q-app {
   min-height: 100%;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   background: var(--fondo-pagina);
