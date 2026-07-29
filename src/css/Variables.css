@@ -24,7 +24,6 @@
   --q-secondary: var(--color-secundario);
   --q-accent: var(--color-acento);
 }
-
 body.body--dark {
   --color-primario: #6db4ff;
   --color-primario-oscuro: #3f93e8;
