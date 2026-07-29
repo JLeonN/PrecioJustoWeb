@@ -22,9 +22,11 @@ Precio Justo ayuda a registrar los precios personales de productos y compararlos
 
 - Escanear códigos de barras o agregar productos manualmente.
 - Registrar precios junto con comercios y sucursales.
-- Comparar los registros personales para decidir dónde comprar.
-- Crear una Lista Justa para organizar compras.
-- Consultar el historial de precios registrados.
+- Comparar los registros personales por producto para decidir dónde comprar.
+- Crear una Lista Justa para organizar compras y comercios a comparar.
+- Consultar el historial de precios registrados por comercio y período.
+- Revisar opciones de compra optimizada por producto y ahorro estimado.
+- Gestionar productos, comercios y sucursales personales.
 
 ## Datos personales
 
@@ -33,6 +35,6 @@ Los productos, precios y comercios se registran para el uso personal de cada usu
 ## Material visual autorizado
 
 - Ícono oficial: `F:\Programación\Precio Justo\PrecioJusto-Icono.png`.
-- Banner: `F:\Programación\Precio Justo\Precio Justo - banner - 1024 x 500.png`.
-- Creatividades: `F:\Programación\Precio Justo\Español\1.png`, `2.png` y `3.png`.
-- Nota obligatoria junto a las creatividades: "Las imágenes, comercios y precios mostrados son ilustrativos".
+- Imagen de portada generada para la web: persona comprando en un supermercado con celular, sin marcas ni texto.
+- Capturas reales seleccionadas: inicio, comparación de precios, Lista Justa, compra optimizada e historial de precios.
+- Las capturas deben conservar la nota: "Las capturas muestran funciones reales de Precio Justo. Los comercios y precios visibles se incluyen únicamente a modo ilustrativo.".

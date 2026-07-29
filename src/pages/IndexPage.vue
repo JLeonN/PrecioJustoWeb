@@ -23,6 +23,12 @@
     </header>
     <main id="inicio">
       <section class="seccion-portada" aria-labelledby="titulo-portada">
+        <img
+          :src="heroCompras"
+          alt="Persona consultando su celular mientras compra"
+          class="fondo-portada"
+        />
+        <div class="capa-portada" aria-hidden="true"></div>
         <div class="contenido-portada contenedor-sitio">
           <div class="texto-portada">
             <p class="etiqueta-portada">Precio Justo</p>
@@ -43,11 +49,14 @@
               rel="noopener noreferrer"
             />
           </div>
-          <img
-            :src="bannerPrecioJusto"
-            alt="Vista ilustrativa de Precio Justo comparando precios entre comercios"
-            class="imagen-portada"
-          />
+          <div class="vista-portada" aria-label="Vista real de la comparación de precios">
+            <div class="marco-celular marco-celular--portada">
+              <img
+                :src="capturaComparacion"
+                alt="Comparación de precios por producto en Precio Justo"
+              />
+            </div>
+          </div>
         </div>
       </section>
       <section
@@ -59,7 +68,7 @@
           <div class="encabezado-seccion">
             <p class="etiqueta-seccion">Simple y personal</p>
             <h2 id="titulo-tutorial">Así funciona Precio Justo</h2>
-            <p>Organiza tu información de compra en tres pasos claros.</p>
+            <p>Registrá lo que compras, organizá tu lista y decidí con tus propios registros.</p>
           </div>
           <ol class="lista-pasos">
             <li v-for="paso in pasosTutorial" :key="paso.numero" class="tarjeta-paso">
@@ -76,33 +85,42 @@
         class="seccion-sitio seccion-funciones"
         aria-labelledby="titulo-funciones"
       >
-        <div class="contenedor-sitio grilla-funciones">
-          <div class="texto-funciones">
+        <div class="contenedor-sitio">
+          <div class="encabezado-seccion">
             <p class="etiqueta-seccion">Más control en tus compras</p>
             <h2 id="titulo-funciones">Todo lo que necesitás para decidir mejor</h2>
+            <p>
+              Precio Justo reúne tu información para comparar, organizar y aprovechar cada compra.
+            </p>
+          </div>
+          <div class="lista-funciones">
             <article
               v-for="funcion in funcionesDestacadas"
               :key="funcion.titulo"
               class="funcion-destacada"
             >
-              <q-icon :name="funcion.icono" size="28px" aria-hidden="true" />
+              <q-icon :name="funcion.icono" size="30px" aria-hidden="true" />
               <div>
                 <h3>{{ funcion.titulo }}</h3>
                 <p>{{ funcion.descripcion }}</p>
               </div>
             </article>
           </div>
-          <div class="galeria-tutorial" aria-label="Vistas ilustrativas de Precio Justo">
+          <div class="galeria-capturas" aria-label="Capturas reales de Precio Justo">
             <figure
-              v-for="imagen in imagenesTutorial"
-              :key="imagen.archivo"
-              class="imagen-tutorial"
+              v-for="captura in capturasAplicacion"
+              :key="captura.archivo"
+              class="captura-aplicacion"
             >
-              <img :src="imagen.archivo" :alt="imagen.descripcion" loading="lazy" />
+              <div class="marco-celular">
+                <img :src="captura.archivo" :alt="captura.descripcion" loading="lazy" />
+              </div>
+              <figcaption>{{ captura.titulo }}</figcaption>
             </figure>
           </div>
-          <p class="nota-ilustrativa">
-            Las imágenes, comercios y precios mostrados son ilustrativos.
+          <p class="nota-capturas">
+            Las capturas muestran funciones reales de Precio Justo. Los comercios y precios visibles
+            se incluyen únicamente a modo ilustrativo.
           </p>
         </div>
       </section>
@@ -118,10 +136,21 @@
           </div>
         </div>
       </section>
+      <section class="seccion-gracias" aria-labelledby="titulo-gracias">
+        <div class="contenedor-sitio contenido-gracias">
+          <q-icon name="favorite" size="34px" aria-hidden="true" />
+          <div>
+            <h2 id="titulo-gracias">Gracias por darle una oportunidad a Precio Justo</h2>
+            <p>
+              Cada descarga y cada registro ayudan a que este proyecto siga creciendo y mejorando.
+            </p>
+          </div>
+        </div>
+      </section>
       <section class="seccion-final" aria-labelledby="titulo-final">
         <div class="contenedor-sitio contenido-final">
           <h2 id="titulo-final">Comprá de forma inteligente</h2>
-          <p>Empieza a registrar y comparar tus precios con Precio Justo.</p>
+          <p>Empezá a registrar y comparar tus precios con Precio Justo.</p>
           <q-btn
             class="boton-descarga boton-descarga--final"
             unelevated
@@ -153,51 +182,74 @@ const urlGooglePlay = 'https://play.google.com/store/apps/details?id=com.precioj
 const urlFacebook = 'https://www.facebook.com/profile.php?id=61590710220868'
 const rutaBase = import.meta.env.BASE_URL
 const logoPrecioJusto = `${rutaBase}Imagenes/LogoPrecioJusto.png`
-const bannerPrecioJusto = `${rutaBase}Imagenes/BannerPrecioJusto.png`
+const heroCompras = `${rutaBase}Imagenes/HeroCompras.png`
+const capturaComparacion = `${rutaBase}Imagenes/CapturaComparacion.jpeg`
 const pasosTutorial = [
   {
     numero: '1',
-    icono: 'qr_code_scanner',
-    titulo: 'Escanea o agrega tus productos',
-    descripcion: 'Usa la cámara o registra manualmente los productos que quieres seguir.',
+    icono: 'edit_note',
+    titulo: 'Registrá tus productos y precios',
+    descripcion: 'Agregá productos y guardá su precio junto con el comercio y la sucursal.',
   },
   {
     numero: '2',
-    icono: 'edit_note',
-    titulo: 'Registra precios y comercios',
-    descripcion: 'Guarda el precio de cada producto junto con el comercio y la sucursal.',
+    icono: 'format_list_bulleted',
+    titulo: 'Organizá tu Lista Justa',
+    descripcion: 'Prepará tus compras con los productos que necesitás y los comercios a comparar.',
   },
   {
     numero: '3',
     icono: 'compare_arrows',
-    titulo: 'Compara y decidí',
-    descripcion: 'Consulta tus registros para elegir dónde realizar tus compras.',
+    titulo: 'Compará y decidí',
+    descripcion:
+      'Consultá precios, historial y opciones de compra para elegir con más información.',
   },
 ]
 const funcionesDestacadas = [
   {
-    icono: 'format_list_bulleted',
-    titulo: 'Lista Justa',
-    descripcion: 'Organiza tus productos para planificar tus compras diarias.',
+    icono: 'price_check',
+    titulo: 'Compará precios por producto',
+    descripcion:
+      'Revisá tus registros por comercio y descubrí dónde te conviene comprar cada producto.',
+  },
+  {
+    icono: 'savings',
+    titulo: 'Organizá una compra más conveniente',
+    descripcion:
+      'La Lista Justa te ayuda a comparar comercios, ordenar tus productos y estimar el ahorro.',
   },
   {
     icono: 'history',
-    titulo: 'Historial de precios',
-    descripcion: 'Consulta los precios que registraste antes de volver a comprar.',
+    titulo: 'Consultá tu historial',
+    descripcion:
+      'Volvé a ver los precios registrados por período y comercio antes de salir a comprar.',
   },
 ]
-const imagenesTutorial = [
+const capturasAplicacion = [
   {
-    archivo: `${rutaBase}Imagenes/TutorialEscanear.png`,
-    descripcion: 'Vista ilustrativa de un producto registrado en Precio Justo',
+    archivo: `${rutaBase}Imagenes/CapturaInicio.jpeg`,
+    titulo: 'Todo a mano',
+    descripcion: 'Pantalla de inicio de Precio Justo con acceso a listas, productos y comercios',
   },
   {
-    archivo: `${rutaBase}Imagenes/TutorialRegistrar.png`,
-    descripcion: 'Vista ilustrativa del registro de precios en Precio Justo',
+    archivo: `${rutaBase}Imagenes/CapturaComparacion.jpeg`,
+    titulo: 'Compará precios',
+    descripcion: 'Comparación de precios por producto entre comercios',
   },
   {
-    archivo: `${rutaBase}Imagenes/TutorialComparar.png`,
-    descripcion: 'Vista ilustrativa de la comparación de precios en Precio Justo',
+    archivo: `${rutaBase}Imagenes/CapturaListaCompras.jpeg`,
+    titulo: 'Lista Justa',
+    descripcion: 'Lista de compras organizada por productos',
+  },
+  {
+    archivo: `${rutaBase}Imagenes/CapturaCompraOptimizada.jpeg`,
+    titulo: 'Compra optimizada',
+    descripcion: 'Vista de compra optimizada por producto y ahorro estimado',
+  },
+  {
+    archivo: `${rutaBase}Imagenes/CapturaHistorialPrecios.jpeg`,
+    titulo: 'Historial de precios',
+    descripcion: 'Historial de precios registrados por comercio',
   },
 ]
 </script>
@@ -213,7 +265,7 @@ const imagenesTutorial = [
 .encabezado-sitio {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -227,7 +279,8 @@ const imagenesTutorial = [
 .navegacion-sitio,
 .contenido-pie,
 .funcion-destacada,
-.contenido-privacidad {
+.contenido-privacidad,
+.contenido-gracias {
   display: flex;
   align-items: center;
 }
@@ -273,19 +326,36 @@ const imagenesTutorial = [
   background: var(--color-acento);
 }
 .seccion-portada {
+  position: relative;
+  min-height: 590px;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--color-primario) 0%, var(--fondo-hero) 100%);
+  background: var(--fondo-hero);
+}
+.fondo-portada,
+.capa-portada {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.fondo-portada {
+  object-fit: cover;
+  object-position: center;
+}
+.capa-portada {
+  background: var(--fondo-hero);
+  opacity: 0.72;
 }
 .contenido-portada {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
-  align-items: center;
-  min-height: 570px;
-  gap: var(--espaciado-xl);
-}
-.texto-portada {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+  min-height: 590px;
+  gap: var(--espaciado-xl);
+  align-items: center;
+}
+.texto-portada {
   padding: var(--espaciado-xl) 0;
 }
 .etiqueta-portada,
@@ -304,8 +374,8 @@ const imagenesTutorial = [
 }
 .texto-portada h1,
 .encabezado-seccion h2,
-.texto-funciones h2,
 .contenido-privacidad h2,
+.contenido-gracias h2,
 .contenido-final h2 {
   margin: 0;
   font-weight: 800;
@@ -323,42 +393,61 @@ const imagenesTutorial = [
   font-size: clamp(18px, 2vw, 21px);
   line-height: 1.55;
 }
-.imagen-portada {
-  width: 100%;
-  min-height: 420px;
-  object-fit: cover;
-  object-position: right center;
+.vista-portada {
+  display: flex;
+  justify-content: center;
+}
+.marco-celular {
+  width: min(100%, 230px);
+  padding: var(--espaciado-xs);
+  overflow: hidden;
+  border: 1px solid var(--borde-color);
   border-radius: var(--borde-radio-md);
+  background: var(--fondo-superficie);
   box-shadow: var(--sombra-media);
+}
+.marco-celular--portada {
+  width: min(100%, 278px);
+  border-color: var(--borde-blanco-sutil);
+}
+.marco-celular img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--borde-radio-sm);
+  object-fit: cover;
+  object-position: top center;
 }
 .seccion-sitio {
   padding: 92px 0;
   scroll-margin-top: 68px;
 }
-.seccion-tutorial {
+.seccion-tutorial,
+.seccion-privacidad {
   background: var(--fondo-superficie);
 }
 .encabezado-seccion {
-  max-width: 650px;
+  max-width: 720px;
   margin: 0 auto var(--espaciado-xl);
   text-align: center;
 }
 .encabezado-seccion h2,
-.texto-funciones h2,
 .contenido-privacidad h2,
+.contenido-gracias h2,
 .contenido-final h2 {
   color: var(--texto-primario);
   font-size: clamp(30px, 4vw, 44px);
 }
 .encabezado-seccion > p:last-child,
-.texto-funciones > p,
 .funcion-destacada p,
 .contenido-privacidad p,
+.contenido-gracias p,
 .contenido-final p {
   color: var(--texto-secundario);
   line-height: 1.6;
 }
-.lista-pasos {
+.lista-pasos,
+.lista-funciones {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--espaciado-lg);
@@ -406,19 +495,13 @@ const imagenesTutorial = [
 .seccion-funciones {
   background: var(--fondo-banner-suave);
 }
-.grilla-funciones {
-  display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(var(--espaciado-xl), 6vw, 76px);
-  align-items: center;
-}
-.texto-funciones > .etiqueta-seccion {
-  margin-bottom: var(--espaciado-sm);
-}
 .funcion-destacada {
   align-items: flex-start;
   gap: var(--espaciado-md);
-  margin-top: var(--espaciado-lg);
+  padding: var(--espaciado-lg);
+  border: 1px solid var(--borde-color);
+  border-radius: var(--borde-radio-md);
+  background: var(--fondo-superficie);
 }
 .funcion-destacada h3 {
   margin-top: 0;
@@ -426,51 +509,57 @@ const imagenesTutorial = [
 .funcion-destacada p {
   margin: 0;
 }
-.galeria-tutorial {
+.galeria-capturas {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--espaciado-sm);
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--espaciado-md);
+  margin-top: var(--espaciado-xl);
 }
-.imagen-tutorial {
+.captura-aplicacion {
   min-width: 0;
   margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--borde-color);
-  border-radius: var(--borde-radio-md);
-  background: var(--fondo-superficie);
-  box-shadow: var(--sombra-suave);
-}
-.imagen-tutorial img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  object-position: top center;
-}
-.nota-ilustrativa {
-  grid-column: 2;
-  margin: calc(var(--espaciado-sm) * -1) 0 0;
-  color: var(--texto-secundario);
-  font-size: 12px;
   text-align: center;
 }
-.seccion-privacidad {
-  background: var(--fondo-superficie);
+.captura-aplicacion .marco-celular {
+  width: 100%;
 }
-.contenido-privacidad {
-  max-width: 760px;
+.captura-aplicacion figcaption {
+  margin-top: var(--espaciado-sm);
+  color: var(--texto-primario);
+  font-size: 14px;
+  font-weight: 800;
+}
+.nota-capturas {
+  max-width: 680px;
+  margin: var(--espaciado-lg) auto 0;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+.contenido-privacidad,
+.contenido-gracias {
+  max-width: 800px;
   gap: var(--espaciado-lg);
   padding: var(--espaciado-xl);
   border: 1px solid var(--borde-color);
   border-radius: var(--borde-radio-md);
   background: var(--fondo-pagina);
 }
-.contenido-privacidad p {
+.contenido-privacidad p,
+.contenido-gracias p {
   margin: var(--espaciado-sm) 0 0;
+}
+.seccion-gracias {
+  padding: 72px 0;
+  background: var(--fondo-banner-suave);
+}
+.contenido-gracias > .q-icon {
+  color: var(--color-acento);
 }
 .seccion-final {
   padding: 88px 0;
-  background: linear-gradient(135deg, var(--color-primario) 0%, var(--fondo-hero) 100%);
+  background: var(--fondo-hero);
   text-align: center;
 }
 .contenido-final {
@@ -499,11 +588,19 @@ const imagenesTutorial = [
   font-weight: 800;
 }
 .contenido-pie > a {
-  gap: var(--espaciado-xs);
   display: inline-flex;
   align-items: center;
+  gap: var(--espaciado-xs);
 }
-@media (max-width: 800px) {
+@media (max-width: 900px) {
+  .contenido-portada {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.55fr);
+  }
+  .galeria-capturas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 700px) {
   .encabezado-sitio {
     padding: 0 var(--espaciado-md);
   }
@@ -513,27 +610,24 @@ const imagenesTutorial = [
   .navegacion-sitio > a {
     display: none;
   }
-  .contenido-portada,
-  .grilla-funciones {
-    grid-template-columns: 1fr;
-  }
   .contenido-portada {
+    grid-template-columns: 1fr;
     min-height: auto;
+    padding: var(--espaciado-xl) 0 0;
     gap: 0;
-    padding-top: var(--espaciado-xl);
   }
   .texto-portada {
     padding-top: 0;
   }
-  .imagen-portada {
-    min-height: 300px;
-    border-radius: var(--borde-radio-md) var(--borde-radio-md) 0 0;
+  .vista-portada {
+    margin-top: var(--espaciado-lg);
   }
-  .lista-pasos {
+  .marco-celular--portada {
+    width: min(68vw, 278px);
+  }
+  .lista-pasos,
+  .lista-funciones {
     grid-template-columns: 1fr;
-  }
-  .nota-ilustrativa {
-    grid-column: auto;
   }
 }
 @media (max-width: 480px) {
@@ -552,15 +646,19 @@ const imagenesTutorial = [
   .seccion-final {
     padding: 64px 0;
   }
-  .galeria-tutorial {
+  .seccion-gracias {
+    padding: 56px 0;
+  }
+  .galeria-capturas {
     grid-template-columns: repeat(2, 1fr);
   }
-  .imagen-tutorial:last-child {
+  .captura-aplicacion:last-child {
     grid-column: 1 / -1;
-    width: calc((100% - var(--espaciado-sm)) / 2);
+    width: calc((100% - var(--espaciado-md)) / 2);
     justify-self: center;
   }
-  .contenido-privacidad {
+  .contenido-privacidad,
+  .contenido-gracias {
     align-items: flex-start;
     padding: var(--espaciado-lg);
   }
